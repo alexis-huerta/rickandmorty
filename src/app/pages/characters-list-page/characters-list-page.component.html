@@ -1,0 +1,17 @@
+
+    <div class="d-flex cards-container">
+        <ng-container *ngFor="let character of data">
+            <div style="width: 255px;">
+                <img class="card-img-top" [src]="character.image" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ character.name }}</h5>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </ng-container>
+    </div>
+
+
+
+
+
