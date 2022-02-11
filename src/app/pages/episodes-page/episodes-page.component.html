@@ -1,0 +1,17 @@
+<ul class="list-group">
+  <ng-container *ngFor="let episode of episodes">
+    <li class="episode list-group-item d-flex justify-content-between">
+      <div>
+        <div class="info">
+          <span class="label">Episode name:</span> {{ episode.name }}
+        </div>
+        <div class="info">
+          <span class="label">Episode:</span> {{ episode.episode }}
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <button (click)="goToCharacters(episode)" class="btn btn-primary"> Characters</button>
+      </div>
+    </li>
+  </ng-container>
+</ul>

@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.location {
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 0, 255, 0.048);
+    }
+}
+
+.label {
+    font-weight: 400;
+    color: #dd3232;
+    font-size: 12px;
+}

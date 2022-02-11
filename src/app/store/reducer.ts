@@ -6,8 +6,6 @@ export const initialState = {
 };
 
 export function dataReducer(state = initialState, action: Actions) {
-    console.log(action);
-    
     switch (action.type) {
         case ActionTypes.LoadCharactersSuccess:
             return {
@@ -18,6 +16,21 @@ export function dataReducer(state = initialState, action: Actions) {
             return {
                 ...state,
                 data: Object.assign({}, action.payload)
+            }
+        case ActionTypes.LoadLocationsSuccess:
+            return {
+                ...state,
+                data: [...action.payload.results]
+            }
+        case ActionTypes.LoadMultipleCharactersSuccess:
+            return {
+                ...state,
+                data: [...action.payload]
+            }
+        case ActionTypes.LoadEpisodesSuccess:
+            return {
+                ...state,
+                data: [...action.payload.results]
             }
         default:
             break;

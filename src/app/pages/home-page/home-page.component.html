@@ -1,9 +1,15 @@
 <div class="container">
     <div class="card">
-        <div class="card-header">
-            <button class="btn btn-outline-primary" (click)="goTo('characters')">Characters</button>
-            <button class="btn btn-outline-success">Locations</button>
-            <button class="btn btn-outline-danger">Episodes</button>
+        <div class="card-header d-flex justify-content-between">
+            <div>
+                <button class="btn btn-outline-primary" (click)="goTo('characters')">Characters</button>
+                <button class="btn btn-outline-success" (click)="goTo('locations')">Locations</button>
+                <button class="btn btn-outline-danger" (click)="goTo('episodes')">Episodes</button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" >
+                <input [formControl]="searchControl" type="search" id="form1" class="form-control" />
+                <button type="button" class="btn btn-primary">search</button>
+            </div>
         </div>
         <div class="card-body">
             <router-outlet></router-outlet>

@@ -1,0 +1,18 @@
+
+ul {
+    gap: 15px;
+    flex-flow: wrap;
+    justify-content: center;
+}
+.episode {
+    width: 20rem;
+    border-top: 1px solid #80808042;
+    &:hover {
+        background-color: rgba(0, 0, 255, 0.048);
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}

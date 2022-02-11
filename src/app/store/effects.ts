@@ -35,4 +35,46 @@ export class rickandmortyEffects {
             )})
         )
     )
+
+    loadLocations$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(ActionTypes.getLocations as any),
+            mergeMap(() => {
+                return this.rickandmortyService.getLocations().pipe(
+                map((locations) => ({
+                    type: ActionTypes.LoadLocationsSuccess,
+                    payload: locations
+                })),
+                catchError(() => EMPTY)
+            )})
+        )
+    )
+
+    loadMultipleCharacters$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(ActionTypes.getMultipleCharacters as any),
+        mergeMap((state) => {
+            return this.rickandmortyService.getMultipleCharacters(state.payload).pipe(
+            map((character) => ({
+                type: ActionTypes.LoadMultipleCharactersSuccess,
+                payload: character
+            })),
+            catchError(() => EMPTY)
+        )})
+    )
+)
+
+    loadEpisodes$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(ActionTypes.getEpisodes as any),
+            mergeMap(() => {
+                return this.rickandmortyService.getEpisode().pipe(
+                map((episodes) => ({
+                    type: ActionTypes.LoadEpisodesSuccess,
+                    payload: episodes
+                })),
+                catchError(() => EMPTY)
+            )})
+        )
+    )
 }

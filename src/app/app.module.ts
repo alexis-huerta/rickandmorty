@@ -9,10 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { rickandmortyEffects } from './store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CommonModule } from '@angular/common';
+import { BaseComponentComponent } from './components/base-component/base-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BaseComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<ul class="list-group">
+    <ng-container *ngFor="let location of locations">
+        <li *ngIf="location && location.residents && location.residents.length > 0"  class="location list-group-item d-flex justify-content-between" (click)="goToCharacters(location)">
+           <div>
+            {{ location.name }}
+           </div> 
+           <div>Type:  {{ location.type }}</div>
+        </li>
+    </ng-container>
+  </ul>

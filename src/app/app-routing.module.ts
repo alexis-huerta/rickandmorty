@@ -21,6 +21,16 @@ const routes: Routes = [{
       loadChildren: () => import('./pages/character-page/character-page.module')
         .then(m => m.CharacterPageModule)
     },
+    {
+      path: 'locations',
+      loadChildren: () => import('./pages/locations/locations.module')
+        .then(m => m.LocationsModule)
+    },
+    {
+      path: 'episodes',
+      loadChildren: () => import('./pages/episodes-page/episodes-page.module')
+        .then(m => m.EpisodesPageModule)
+    },
   ]
 },];
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
+import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
 import { getCharacter, getCharacters } from 'src/app/store/actions';
 
 @Component({
@@ -10,11 +12,10 @@ import { getCharacter, getCharacters } from 'src/app/store/actions';
 })
 export class CharactersListPageComponent implements OnInit {
   data: any[] = [];
-  constructor(private store: Store<any>, private readonly router: Router) {
+  type: string;
+  constructor(private store: Store<any>, private readonly router: Router, private readonly rickandmortyService: RickAndMortyService) {
     store.pipe(select('data')).subscribe((state) =>{
-      console.log(state);
       if (state) {
-
         this.data = state.data
       }
     
@@ -22,13 +23,19 @@ export class CharactersListPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.store.dispatch(new getCharacters());
-    
+    if (!this.rickandmortyService.isMultiple) {
+     this.getCharacters();
+    }
+    this.rickandmortyService.isMultiple = false;
   }
 
   goToCharacterinfo(characterId: number) {
     this.store.dispatch(new getCharacter(characterId));
     this.router.navigate(['home', 'character']);
+  }
+
+  getCharacters() {
+    this.store.dispatch(new getCharacters());
   }
 
 }
