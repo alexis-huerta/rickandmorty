@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { getCharacter, getCharacters } from 'src/app/store/actions';
 
@@ -9,7 +10,7 @@ import { getCharacter, getCharacters } from 'src/app/store/actions';
 })
 export class CharactersListPageComponent implements OnInit {
   data: any[] = [];
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<any>, private readonly router: Router) {
     store.pipe(select('data')).subscribe((state) =>{
       console.log(state);
       if (state) {
@@ -22,7 +23,12 @@ export class CharactersListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new getCharacters());
-    //this.store.dispatch(new getCharacter(45));
+    
+  }
+
+  goToCharacterinfo(characterId: number) {
+    this.store.dispatch(new getCharacter(characterId));
+    this.router.navigate(['home', 'character']);
   }
 
 }

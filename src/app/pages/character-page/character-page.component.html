@@ -1,0 +1,14 @@
+<div class="row">
+    <ng-container *ngIf="character"> 
+        <div class="col-12 col-md-6">
+            <img class="image" [src]="character.data.image" alt="">
+        </div>
+        <div class="col-12 col-md-6">
+            <h1 class="name">{{ character.data.name }}</h1>
+            <h5> Status: </h5> {{ character.data.status }}
+            <h5> Species: </h5> {{ character.data.species }}
+            <h5> Gender: </h5> {{ character.data.gender }}
+            <h5> Last known location: </h5>{{ character.data.location.name }}
+        </div>
+    </ng-container>
+</div>

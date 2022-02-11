@@ -5,7 +5,7 @@
                 <img class="card-img-top" [src]="character.image" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{ character.name }}</h5>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <button class="btn btn-primary" (click)="goToCharacterinfo(character.id)">See more</button>
                 </div>
               </div>
         </ng-container>

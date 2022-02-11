@@ -18,7 +18,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ data: dataReducer }),
+    StoreModule.forRoot({ 
+      data: dataReducer }),
     EffectsModule.forRoot([rickandmortyEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 10
