@@ -8,8 +8,11 @@ import { select, State } from '@ngrx/store';
 })
 export class CharacterPageComponent implements OnInit {
   character: any;
+
   constructor(private state: State<any>) { 
-    state.pipe(select('data')).subscribe(state => this.character = state)
+    state.pipe(select('data')).subscribe(state =>{  
+      this.character = state
+    })
   }
 
   ngOnInit(): void {

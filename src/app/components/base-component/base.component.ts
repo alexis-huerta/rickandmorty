@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-base-component',
   template: ''
 })
-export class BaseComponentComponent implements OnInit, OnDestroy {
+export class BaseComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor() {

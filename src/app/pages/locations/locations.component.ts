@@ -20,7 +20,8 @@ export class LocationsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.store.dispatch(new getLocations());
+    this.getLocations(1)
+    
   }
 
   goToCharacters(location: any) {
@@ -36,6 +37,10 @@ export class LocationsComponent implements OnInit {
       
     this.store.dispatch(new getMultipleCharacters(charactersId));
     this.router.navigate(['home','characters']);
+  }
+
+  getLocations(currentPage: number) {
+    this.store.dispatch(new getLocations(currentPage));
   }
 
 }

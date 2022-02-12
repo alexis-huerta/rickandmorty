@@ -20,11 +20,11 @@ export class EpisodesPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getEpisodes();
+    this.getEpisodes(1);
   }
 
-  getEpisodes() {
-    this.store.dispatch(new getEpisodes());
+  getEpisodes(currentPage: number) {
+    this.store.dispatch(new getEpisodes(currentPage));
   }
 
 

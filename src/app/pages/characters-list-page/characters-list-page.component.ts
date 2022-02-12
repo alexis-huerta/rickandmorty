@@ -16,7 +16,7 @@ export class CharactersListPageComponent implements OnInit {
   constructor(private store: Store<any>, private readonly router: Router, private readonly rickandmortyService: RickAndMortyService) {
     store.pipe(select('data')).subscribe((state) =>{
       if (state) {
-        this.data = state.data
+        this.data = state.data;
       }
     
     })
@@ -24,7 +24,7 @@ export class CharactersListPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.rickandmortyService.isMultiple) {
-     this.getCharacters();
+     this.getCharacters(1);
     }
     this.rickandmortyService.isMultiple = false;
   }
@@ -34,8 +34,8 @@ export class CharactersListPageComponent implements OnInit {
     this.router.navigate(['home', 'character']);
   }
 
-  getCharacters() {
-    this.store.dispatch(new getCharacters());
+  getCharacters(page?: number) {
+    this.store.dispatch(new getCharacters(page));
   }
 
 }

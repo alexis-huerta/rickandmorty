@@ -12,8 +12,8 @@ export class RickAndMortyService {
 
   isMultiple = false;
 
-  getcharactersList(): Observable<any> {
-    return this.http.get(this.CHARACTER_URL);
+  getcharactersList(currentPage: number): Observable<any> {
+    return this.http.get(`${ this.CHARACTER_URL}?page=${currentPage}`);
   }
 
   getCharacter(id: number): Observable<any>  {
@@ -25,11 +25,15 @@ export class RickAndMortyService {
     return this.http.get( `${this.CHARACTER_URL}/${characters}`);
   }
 
-  getLocations(): Observable<any> {
-    return this.http.get(`${this.RICK_AND_MORTY_URL}location`);
+  getLocations(currentPage: number): Observable<any> {
+    return this.http.get(`${this.RICK_AND_MORTY_URL}location?page=${currentPage}`);
   }
 
-  getEpisode() {
-    return this.http.get(`${this.RICK_AND_MORTY_URL}episode`);
+  getEpisode(currentPage: number): Observable<any>{
+    return this.http.get(`${this.RICK_AND_MORTY_URL}episode?page=${currentPage}`);
+  }
+
+  search(type: string, name: string): Observable<any> {
+    return this.http.get(`${this.RICK_AND_MORTY_URL}${type}/?name=${name}`);
   }
 }

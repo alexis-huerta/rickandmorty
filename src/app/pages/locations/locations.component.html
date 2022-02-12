@@ -8,3 +8,5 @@
         </li>
     </ng-container>
   </ul>
+
+  <app-pagination [totalPages]="7" (changePageEvent)="getLocations($event)"></app-pagination>

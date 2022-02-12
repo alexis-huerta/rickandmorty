@@ -12,13 +12,16 @@ export class rickandmortyEffects {
     loadCharacters$ = createEffect(() => 
         this.actions$.pipe(
             ofType(ActionTypes.getCharacters as any),
-            mergeMap(() => this.rickandmortyService.getcharactersList().pipe(
+            mergeMap((state) => { 
+                console.log(state);
+                
+                return this.rickandmortyService.getcharactersList(state.payload).pipe(
                 map((characters) => ({
                     type: ActionTypes.LoadCharactersSuccess,
                     payload: characters
                 })),
                 catchError(() => EMPTY)
-            ))
+            )})
         )
     )
 
@@ -39,8 +42,8 @@ export class rickandmortyEffects {
     loadLocations$ = createEffect(() => 
         this.actions$.pipe(
             ofType(ActionTypes.getLocations as any),
-            mergeMap(() => {
-                return this.rickandmortyService.getLocations().pipe(
+            mergeMap((state) => {
+                return this.rickandmortyService.getLocations(state.payload).pipe(
                 map((locations) => ({
                     type: ActionTypes.LoadLocationsSuccess,
                     payload: locations
@@ -67,11 +70,25 @@ export class rickandmortyEffects {
     loadEpisodes$ = createEffect(() => 
         this.actions$.pipe(
             ofType(ActionTypes.getEpisodes as any),
-            mergeMap(() => {
-                return this.rickandmortyService.getEpisode().pipe(
+            mergeMap((state) => {
+                return this.rickandmortyService.getEpisode(state.payload).pipe(
                 map((episodes) => ({
                     type: ActionTypes.LoadEpisodesSuccess,
                     payload: episodes
+                })),
+                catchError(() => EMPTY)
+            )})
+        )
+    )
+
+    serach$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(ActionTypes.search as any),
+            mergeMap((state) => {
+                return this.rickandmortyService.search(state.payload.type, state.payload.name).pipe(
+                map((results) => ({
+                    type: ActionTypes.searchSuccess,
+                    payload: results
                 })),
                 catchError(() => EMPTY)
             )})

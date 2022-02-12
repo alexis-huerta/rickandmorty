@@ -10,12 +10,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { rickandmortyEffects } from './store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CommonModule } from '@angular/common';
-import { BaseComponentComponent } from './components/base-component/base-component.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { BaseComponent } from './components/base-component/base.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponentComponent
+    BaseComponent
   ],
   imports: [
     BrowserModule,

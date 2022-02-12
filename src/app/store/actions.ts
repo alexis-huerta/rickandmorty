@@ -7,15 +7,20 @@ export enum ActionTypes {
     getEpisodes = '[episodes] get episodes list',
     getMultipleCharacters = '[characters location] get characters from location',
 
+    search = '[Search] search by name',
+
     LoadCharactersSuccess = '[characters] Load success',
     LoadCharacterSuccess = '[character] Load success',
     LoadLocationsSuccess = '[locations] Load success',
     LoadEpisodesSuccess = '[episodes] Load success',
-    LoadMultipleCharactersSuccess = '[multiple characters] Load success',
+    LoadMultipleCharactersSuccess = '[multiple character] Load success',
+
+    searchSuccess = '[search] search success',
   }
 
 export class getCharacters implements Action {
     readonly type = ActionTypes.getCharacters;
+    constructor(public payload: number) {}
 }
 export class getCharacter implements Action {
     readonly type = ActionTypes.getCharacter;
@@ -27,12 +32,19 @@ export class getMultipleCharacters implements Action {
   constructor(public payload: string[]) {}
 }
 
+export class search implements Action {
+  readonly type = ActionTypes.search;
+  constructor(public payload: {type: string, name: string}) {}
+}
+
 export class getLocations implements Action {
   readonly type = ActionTypes.getLocations;
+  constructor(public payload: number) {}
 }
 
 export class getEpisodes implements Action {
   readonly type = ActionTypes.getEpisodes;
+  constructor(public payload: number) {}
 }
 
 export class LoadCharacters implements Action {
@@ -60,4 +72,11 @@ export class LoadCharacters implements Action {
     constructor(public payload: any) {}
   }
 
-export type Actions =  getCharacters | LoadCharacters | getCharacter | LoadCharacter | LoadLocations | getLocations | LoadMultipleCharacters | getMultipleCharacters | LoadEpisodes | getEpisodes;
+  export class searchData implements Action {
+    readonly type = ActionTypes.searchSuccess;
+    constructor(public payload: any) {}
+  }
+
+export type Actions =  getCharacters | LoadCharacters | getCharacter | 
+LoadCharacter | LoadLocations | getLocations | LoadMultipleCharacters | 
+getMultipleCharacters | LoadEpisodes | getEpisodes | search | searchData;

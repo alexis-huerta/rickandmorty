@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CharactersListPageRoutingModule } from './characters-list-page-routing.module';
 import { CharactersListPageComponent } from './characters-list-page.component';
+import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
+import { PaginationModule } from 'src/app/components/pagination/pagination.module';
 
 
 @NgModule({
@@ -10,6 +12,7 @@ import { CharactersListPageComponent } from './characters-list-page.component';
   imports: [
     CommonModule,
     CharactersListPageRoutingModule,
+    PaginationModule
   ]
 })
 export class CharactersListPageModule { }

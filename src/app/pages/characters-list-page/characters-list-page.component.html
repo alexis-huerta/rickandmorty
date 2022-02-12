@@ -1,17 +1,13 @@
-
-    <div class="d-flex cards-container">
-        <ng-container *ngFor="let character of data">
-            <div style="width: 255px;">
-                <img class="card-img-top" [src]="character.image" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">{{ character.name }}</h5>
-                  <button class="btn btn-primary" (click)="goToCharacterinfo(character.id)">See more</button>
-                </div>
-              </div>
-        </ng-container>
+<div class="d-flex cards-container">
+  <ng-container *ngFor="let character of data">
+    <div style="width: 255px;">
+      <img class="card-img-top" [src]="character.image" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ character.name }}</h5>
+        <button class="btn btn-primary" (click)="goToCharacterinfo(character.id)">Details</button>
+      </div>
     </div>
+  </ng-container>
+</div>
 
-
-
-
-
+<app-pagination [totalPages]="48" (changePageEvent)="getCharacters($event)"></app-pagination>

@@ -1,24 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
-import { BaseComponentComponent } from 'src/app/components/base-component/base-component.component';
-import { getCharacters } from 'src/app/store/actions';
+import { BaseComponent } from 'src/app/components/base-component/base.component';
+import { getCharacters, search } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent extends BaseComponentComponent implements OnInit {
+export class HomePageComponent extends BaseComponent implements OnInit {
   searchControl = new FormControl('');
+  type: string;
 
   constructor(
     private readonly router: Router,
     private store: Store<any>
   ) { 
     super();
+    store.pipe(select('data')).subscribe((state) =>{
+      if (state && state.type) {
+        
+        this.type = state.type;
+      }
+    
+    })
   }
 
   ngOnInit(): void {
@@ -27,7 +35,7 @@ export class HomePageComponent extends BaseComponentComponent implements OnInit 
 
   goTo(name: string) {
     if (name === 'characters') {
-      this.store.dispatch(new getCharacters());
+      this.store.dispatch(new getCharacters(1));
     }
     this.router.navigate(['home', name]);
   }
@@ -35,9 +43,13 @@ export class HomePageComponent extends BaseComponentComponent implements OnInit 
   observeInput() {
     this.subscription.add(
       this.searchControl.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe(res => console.log(res))
+      .pipe(debounceTime(900))
+      .subscribe(res => this.searchBy(this.type, res))
     );
+  }
+
+  private searchBy(type:string, name: string) {
+    this.store.dispatch(new search({type, name}))
   }
 
 }
