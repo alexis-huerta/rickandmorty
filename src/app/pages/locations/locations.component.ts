@@ -33,7 +33,6 @@ export class LocationsComponent implements OnInit {
         charactersId.push(charactersId[0]);
         charactersId = charactersId;
       }
-      console.log(location);
       
     this.store.dispatch(new getMultipleCharacters(charactersId));
     this.router.navigate(['home','characters']);

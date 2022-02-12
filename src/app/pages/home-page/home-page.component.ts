@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/components/base-component/base.component';
+import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
 import { getCharacters, search } from 'src/app/store/actions';
 
 @Component({
@@ -17,7 +18,8 @@ export class HomePageComponent extends BaseComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private store: Store<any>
+    private store: Store<any>,
+    private readonly rickandmortyService: RickAndMortyService
   ) { 
     super();
     store.pipe(select('data')).subscribe((state) =>{
@@ -34,10 +36,11 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   }
 
   goTo(name: string) {
-    if (name === 'characters') {
+    if (name === 'characters' && this.rickandmortyService.isMultiple) {
       this.store.dispatch(new getCharacters(1));
     }
     this.router.navigate(['home', name]);
+    this.rickandmortyService.isMultiple = false;
   }
 
   observeInput() {

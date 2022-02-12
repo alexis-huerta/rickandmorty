@@ -13,8 +13,6 @@ export class rickandmortyEffects {
         this.actions$.pipe(
             ofType(ActionTypes.getCharacters as any),
             mergeMap((state) => { 
-                console.log(state);
-                
                 return this.rickandmortyService.getcharactersList(state.payload).pipe(
                 map((characters) => ({
                     type: ActionTypes.LoadCharactersSuccess,
